@@ -12,24 +12,6 @@ mkdir -p /etc/nomad.d
 chmod a+w /etc/nomad.d
 mkdir -p /var/lib/nomad
 
-tee /etc/consul.d/nomad.json <<-EOF
-{
-  "service": {
-    "name": "nomad",
-    "address": "$BIND_ADDRESS",
-    "port": 4647,
-    "checks": [
-      {
-        "tcp": "$BIND_ADDRESS:4647",
-        "interval": "10s"
-      }
-    ]
-  }
-}
-EOF
-
-consul reload
-
 tee /etc/nomad.d/server.hcl <<-EOF
 name = "$NODENAME"
 data_dir = "/var/lib/nomad"
@@ -70,3 +52,23 @@ systemctl start nomad
 tee /etc/profile.d/nomad.sh <<-EOF
 export NOMAD_ADDR=http://$BIND_ADDRESS:4646
 EOF
+
+sleep 5
+
+tee /etc/consul.d/nomad.json <<-EOF
+{
+  "service": {
+    "name": "nomad",
+    "address": "$BIND_ADDRESS",
+    "port": 4647,
+    "checks": [
+      {
+        "tcp": "$BIND_ADDRESS:4647",
+        "interval": "10s"
+      }
+    ]
+  }
+}
+EOF
+
+consul reload
