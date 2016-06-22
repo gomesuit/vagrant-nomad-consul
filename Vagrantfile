@@ -37,6 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
     host.vm.provision :shell, path: "install-nomad.sh"
     host.vm.provision :shell, path: "run-nomad-agent.sh", args: _CONSUL_ARGS
+    host.vm.provision :shell, path: "run-docker.sh"
   end
 
   config.vm.define :front do |host|
