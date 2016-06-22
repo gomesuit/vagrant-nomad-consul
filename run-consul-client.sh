@@ -12,21 +12,6 @@ mkdir -p /etc/consul.d
 chmod a+w /etc/consul.d
 mkdir -p /var/lib/consul
 
-cat <<EOF > /etc/consul.d/web.json
-{
-	"service": {
-		"name": "web",
-		"tags": ["nginx"],
-		"port": 80,
-		"check": {
-			"script": "curl http://127.0.0.1:80/consul.html >/dev/null 2>&1",
-			"interval": "10s",
-			"timeout": "5s"
-		}
-	}
-}
-EOF
-
 cat <<EOF > /etc/consul.d/agent.json
 {
 	"ports": {
