@@ -19,6 +19,7 @@ bind_addr = "$BIND_ADDRESS"
 client {
     enabled = true
     servers = ["nomad.service.consul:4647"]
+    network_interface = "eth1"
 }
 EOF
 
