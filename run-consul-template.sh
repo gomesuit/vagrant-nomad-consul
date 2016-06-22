@@ -26,7 +26,7 @@ upstream {{\$service.Name}} {
 }
 server {
         include /etc/nginx/proxy.conf;
-        server_name {{\$service.Name}}.__YOUR_DOMAIN_NAME__;
+        server_name {{\$service.Name}}.example.com;
         location / {
                 proxy_pass http://{{\$service.Name}};
         }
