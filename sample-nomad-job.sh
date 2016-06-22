@@ -5,7 +5,7 @@ job "apache" {
 	datacenters = ["dc1"]
 
 	constraint {
-		attribute = "${attr.kernel.name}"
+		attribute = "\${attr.kernel.name}"
 		value = "linux"
 	}
 
