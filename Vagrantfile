@@ -18,6 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     host.vm.hostname = _HOSTNAME
     host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "stop-security.sh"
     host.vm.provision :shell, path: "install-consul.sh"
     host.vm.provision :shell, path: "run-consul-server.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
@@ -34,6 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     host.vm.hostname = _HOSTNAME
     host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "stop-security.sh"
     host.vm.provision :shell, path: "install-consul.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
@@ -50,6 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     host.vm.hostname = _HOSTNAME
     host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "stop-security.sh"
     host.vm.provision :shell, path: "install-nginx.sh", args: _HOSTNAME
     host.vm.provision :shell, path: "install-consul.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: _CONSUL_ARGS
