@@ -17,18 +17,18 @@ template {
 EOF
 
 tee /etc/consul-template/virtualhosts.tmpl <<-EOF
-{{ range $index , $service := services }}
-{{ if in $service.Tags "nomad-worker" }}
-upstream {{$service.Name}} {
-  {{ range service $service.Name }}
+{{ range \$index , \$service := services }}
+{{ if in \$service.Tags "nomad-worker" }}
+upstream {{\$service.Name}} {
+  {{ range service \$service.Name }}
     server {{.Address}}:{{.Port}};
   {{ end }}
 }
 server {
         include /etc/nginx/proxy.conf;
-        server_name {{$service.Name}}.__YOUR_DOMAIN_NAME__;
+        server_name {{\$service.Name}}.__YOUR_DOMAIN_NAME__;
         location / {
-                proxy_pass http://{{$service.Name}};
+                proxy_pass http://{{\$service.Name}};
         }
 }
 {{ end }}
