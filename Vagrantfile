@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "install-nomad.sh"
     host.vm.provision :shell, path: "run-nomad-server.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "sample-nomad-job.sh"
+    host.vm.provision :shell, path: "set-hosts.sh"
   end
 
   config.vm.define :agent01 do |host|
@@ -39,6 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "install-nomad.sh"
     host.vm.provision :shell, path: "run-nomad-agent.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "run-docker.sh"
+    host.vm.provision :shell, path: "set-hosts.sh"
   end
 
   config.vm.define :front do |host|
@@ -54,6 +56,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
     host.vm.provision :shell, path: "install-consul-template.sh"
     host.vm.provision :shell, path: "run-consul-template.sh"
+    host.vm.provision :shell, path: "set-hosts.sh"
   end
 
 end
