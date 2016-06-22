@@ -67,6 +67,6 @@ systemctl daemon-reload
 systemctl enable nomad
 systemctl start nomad
 
-tee /etc/profile.d/nomad.sh <<- EOF
+tee /etc/profile.d/nomad.sh <<-EOF
 export NOMAD_ADDR=http://$BIND_ADDRESS:4646
 EOF

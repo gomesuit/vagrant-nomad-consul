@@ -22,10 +22,10 @@ client {
 }
 EOF
 
-tee /etc/sysconfig/nomad <<- EOF
+tee /etc/sysconfig/nomad <<-EOF
 EOF
 
-tee /etc/systemd/system/nomad.service <<- EOF
+tee /etc/systemd/system/nomad.service <<-EOF
 [Unit]
 Description=nomad agent
 Requires=network-online.target
@@ -48,6 +48,6 @@ systemctl daemon-reload
 systemctl enable nomad
 systemctl start nomad
 
-tee /etc/profile.d/nomad.sh <<- EOF
+tee /etc/profile.d/nomad.sh <<-EOF
 export NOMAD_ADDR=http://$BIND_ADDRESS:4646
 EOF
