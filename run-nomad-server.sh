@@ -53,8 +53,6 @@ tee /etc/profile.d/nomad.sh <<-EOF
 export NOMAD_ADDR=http://$BIND_ADDRESS:4646
 EOF
 
-sleep 5
-
 tee /etc/consul.d/nomad.json <<-EOF
 {
   "service": {
@@ -71,4 +69,4 @@ tee /etc/consul.d/nomad.json <<-EOF
 }
 EOF
 
-consul reload
+/usr/local/bin/consul reload
