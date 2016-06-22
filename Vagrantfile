@@ -23,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
     host.vm.provision :shell, path: "install-nomad.sh"
     host.vm.provision :shell, path: "run-nomad-server.sh", args: _CONSUL_ARGS
+    host.vm.provision :shell, path: "sample-nomad-job.sh"
   end
 
   config.vm.define :agent01 do |host|
