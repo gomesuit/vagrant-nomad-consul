@@ -1,17 +1,21 @@
-# consul-template-practice
+# vagrant-nomad-consul
 
-consul-template -consul 127.0.0.1:8500 -template "/root/hosts-node.ctmpl:/etc/hosts" -dry
+## ジョブ実行
+```
+nomad run apache.nomad
+```
 
+## 実行されているジョブ一覧表示
+```
+nomad status
+```
 
+## 実行されているジョブの詳細確認
+```
+nomad status [ジョブ名]
+```
 
-# Running Registrator
-
-docker run -d \
-    --name=registrator \
-    --net=host \
-    --privileged \
-    --volume=/var/run/docker.sock:/tmp/docker.sock \
-    gliderlabs/registrator:latest \
-    consul://localhost:8500
-
-curl 127.0.0.1:8500/v1/catalog/services
+## 動作確認
+```
+curl http://job01.example.com/
+```
